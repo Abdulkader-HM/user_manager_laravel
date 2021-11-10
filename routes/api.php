@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\UserController;
+use Facade\FlareClient\Api;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +21,22 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('index', 'Api\usersController@index');
-Route::get('show/{id}', 'Api\usersController@show');
-Route::post('create', 'Api\usersController@store');
-Route::put('update/{id}', 'Api\usersController@update');
-Route::delete('delete/{id}', 'Api\usersController@delete');
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+});
+
+
+Route::get('user', 'Api\usersController@index');
+Route::get('user/{id}', 'Api\usersController@show');
+Route::post('user', 'Api\usersController@store');
+Route::put('user/{id}', 'Api\usersController@update');
+Route::delete('user/{id}', 'Api\usersController@delete');
