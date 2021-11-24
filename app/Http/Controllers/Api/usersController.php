@@ -49,6 +49,7 @@ class usersController extends Controller
 
     public function update(Request $request, $id)
     {
+        die($request->name);
         $test = new BaseController;
         $user = User::find($id);
 

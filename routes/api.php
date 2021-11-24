@@ -21,22 +21,40 @@ use App\Http\Controllers\AuthController;
 //     return $request->user();
 // });
 
+// Route::group([
+//     'middleware' => ['api', 'cors'],
+//     'namespace' => $this->namespace,
+//     'prefix' => 'auth',
+// ], function ($router) {
+//     Route::get('user', 'Api\usersController@index');
+//     Route::get('user/{id}', 'Api\usersController@show');
+//     Route::post('user', 'Api\usersController@store');
+//     Route::put('user/{id}', 'Api\usersController@update');
+//     Route::delete('user/{id}', 'Api\usersController@delete');
+// });
+
+
 
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
 
 ], function ($router) {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/register', [AuthController::class, 'register']);
+    Route::patch('/profile', [AuthController::class, 'login']);
+    Route::post('/profile', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
+    Route::get('user', 'Api\usersController@index');
+    Route::get('user/{id}', 'Api\usersController@show');
+    Route::post('user', 'Api\usersController@store');
+    Route::put('user/{id}', 'Api\usersController@update');
+    Route::delete('user/{id}', 'Api\usersController@delete');
 });
 
 
-Route::get('user', 'Api\usersController@index');
-Route::get('user/{id}', 'Api\usersController@show');
-Route::post('user', 'Api\usersController@store');
-Route::put('user/{id}', 'Api\usersController@update');
-Route::delete('user/{id}', 'Api\usersController@delete');
+// Route::get('user', 'Api\usersController@index');
+// Route::get('user/{id}', 'Api\usersController@show');
+// Route::post('user', 'Api\usersController@store');
+// Route::put('user/{id}', 'Api\usersController@update');
+// Route::delete('user/{id}', 'Api\usersController@delete');
