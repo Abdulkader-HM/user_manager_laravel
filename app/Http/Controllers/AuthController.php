@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Validator;
-
 
 class AuthController extends Controller
 {
@@ -38,9 +36,9 @@ class AuthController extends Controller
         }
 
         if (!$token = auth()->attempt($validator->validated())) {
+            dd();
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
         return $this->createNewToken($token);
     }
 
