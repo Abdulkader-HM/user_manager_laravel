@@ -14,7 +14,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // dd('worng');
         $this->middleware('auth');
     }
 

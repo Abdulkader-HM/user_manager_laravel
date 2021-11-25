@@ -7,11 +7,11 @@
     @method('PUT')
     <div class="mb-3" style="container">
         <label  class="form-label">Name</label>
-        <input type="text" class="form-control" name="name" value="{{ $user[0]->name }}" >
+        <input type="text" class="form-control" name="name" placeholder="{{ $user[0]->name }}"  >
       </div>
     <div class="mb-3" style="container">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control"  aria-describedby="emailHelp" name='email' value="{{ $user[0]->email }}">
+      <input type="email" class="form-control"  aria-describedby="emailHelp" name='email' placeholder="{{ $user[0]->email }}">
     </div>
     {{-- <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -20,7 +20,7 @@
     <select class="form-select" name="type" >
         <option value="user">User</option>
         <option value="admin">Admin</option>
-      </select><br>
+      </select><br><br>
 
     <button type="submit" class="btn btn-primary">Submit</button>
     <a href="{{ route('dashboard.index') }}" class="btn btn-dark" >Back</a>

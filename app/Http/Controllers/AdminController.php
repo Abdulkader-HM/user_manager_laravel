@@ -86,13 +86,13 @@ class AdminController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique',
             'type' => 'required',
         ]);
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->type = $request->type;
         $user->save();
         return redirect()->route('dashboard.index');
     }
