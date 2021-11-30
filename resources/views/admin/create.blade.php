@@ -22,9 +22,10 @@
             <select class="form-select" name="type">
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
-            </select><br>
+            </select><br><br>
 
             <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="{{ route('dashboard.index') }}" class="btn btn-success">Back</a>
         </form>
     </div>
 @endsection

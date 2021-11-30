@@ -16,25 +16,6 @@ use App\Http\Controllers\AuthController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-// Route::group([
-//     'middleware' => ['api', 'cors'],
-//     'namespace' => $this->namespace,
-//     'prefix' => 'auth',
-// ], function ($router) {
-//     Route::get('user', 'Api\usersController@index');
-//     Route::get('user/{id}', 'Api\usersController@show');
-//     Route::post('user', 'Api\usersController@store');
-//     Route::put('user/{id}', 'Api\usersController@update');
-//     Route::delete('user/{id}', 'Api\usersController@delete');
-// });
-
-
-
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
@@ -51,10 +32,3 @@ Route::group([
     Route::put('user/{id}', 'Api\usersController@update');
     Route::delete('user/{id}', 'Api\usersController@delete');
 });
-
-
-// Route::get('user', 'Api\usersController@index');
-// Route::get('user/{id}', 'Api\usersController@show');
-// Route::post('user', 'Api\usersController@store');
-// Route::put('user/{id}', 'Api\usersController@update');
-// Route::delete('user/{id}', 'Api\usersController@delete');

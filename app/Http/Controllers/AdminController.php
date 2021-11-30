@@ -18,7 +18,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
         return view('admin.dashboard', compact('users'));
     }
 
@@ -85,15 +85,15 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'type' => 'required',
         ]);
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->type = $request->type;
-        $user->save();
+        $user->update($request->all());
         return redirect()->route('dashboard.index');
     }
 

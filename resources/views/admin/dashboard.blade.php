@@ -4,7 +4,13 @@ $i = 1;
 @endphp
 
 @section('content')
-    <center>Dashboard</center>
+    <center>Dashboard <br>
+        @if (Auth::user()->type == 'admin')
+            <a class="btn btn-warning alert-success" href="{{ route('dashboard.create') }}">
+                {{ __('create user') }}
+            </a>
+        @endif
+    </center>
     <br>
     <table class="table">
         <thead>
@@ -26,7 +32,7 @@ $i = 1;
                     <td>{{ $user->type }}</td>
 
                     <td>
-                        @if ($user->type == 'user')
+                        @if (!($user->email == "admin@admin.com" & $user->type == "admin"))
                             <form method="POST" action="{{ route('dashboard.destroy', $user->id) }}">
                                 @csrf
                                 @method('DELETE')
@@ -44,4 +50,6 @@ $i = 1;
             @endforeach
         </tbody>
     </table>
+    <center>{{ $users->links() }}</center>
+
 @endsection
